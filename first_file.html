@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google Login</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+  <script>
+    function onSignIn(googleUser) {
+      // Отримати профіль користувача
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+
+      // Отримати токен
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+      
+      // Відправити токен на сервер для перевірки та подальшого використання
+      // Наприклад, використовуйте fetch або XMLHttpRequest для цього.
+      fetch('/tokensignin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'idtoken=' + id_token
+      }).then(function(response) {
+        console.log(response);
+        // Обробка відповіді сервера
+      });
+    }
+  </script>
+</body>
+</html>
