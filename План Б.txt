@@ -1,0 +1,4 @@
+You'll have to use OAuth 2.0 to intergrate with Googles APIs. 
+More info: https://developers.google.com/identity/sign-in/web/sign-in
+
+Scroll down to see Add a Google Sign-In button
